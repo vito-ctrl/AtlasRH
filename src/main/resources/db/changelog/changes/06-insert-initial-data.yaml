@@ -1,0 +1,256 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06-insert-initial-data
+      author: atlasrh
+      changes:
+        # 1. Départements
+        - insert:
+            tableName: departments
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: name, value: "Ressources Humaines" }
+              - column: { name: description, value: "Gestion du personnel, contrats et recrutement" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: departments
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: name, value: "Informatique" }
+              - column: { name: description, value: "Développement logiciel, infrastructures et support IT" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: departments
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: name, value: "Finance" }
+              - column: { name: description, value: "Comptabilité, paie et gestion financière" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: departments
+            columns:
+              - column: { name: id, valueNumeric: 4 }
+              - column: { name: name, value: "Marketing" }
+              - column: { name: description, value: "Communication, partenariats et stratégie marketing" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+
+        # 2. Types de congé (ANNUEL et EXCEPTIONNEL requis)
+        - insert:
+            tableName: leave_types
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: code, value: "ANNUEL" }
+              - column: { name: name, value: "Congé Annuel" }
+              - column: { name: default_days_per_year, valueNumeric: 25 }
+              - column: { name: description, value: "Congé payé annuel légal (25 jours ouvrés par an)" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: leave_types
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: code, value: "EXCEPTIONNEL" }
+              - column: { name: name, value: "Congé Exceptionnel" }
+              - column: { name: default_days_per_year, valueNumeric: 10 }
+              - column: { name: description, value: "Congés pour événements familiaux (mariage, naissance, etc.)" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+
+        # 3. Employés
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: matricule, value: "EMP-001" }
+              - column: { name: nom, value: "El Amrani" }
+              - column: { name: prenom, value: "Fatima" }
+              - column: { name: email, value: "fatima.elamrani@atlasrh.ma" }
+              - column: { name: poste, value: "Directrice des Ressources Humaines" }
+              - column: { name: date_embauche, valueDate: "2020-01-15" }
+              - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: manager_id, valueComputed: "NULL" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: matricule, value: "EMP-002" }
+              - column: { name: nom, value: "Bennani" }
+              - column: { name: prenom, value: "Karim" }
+              - column: { name: email, value: "karim.bennani@atlasrh.ma" }
+              - column: { name: poste, value: "Responsable Informatique" }
+              - column: { name: date_embauche, valueDate: "2020-03-01" }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: manager_id, valueComputed: "NULL" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: matricule, value: "EMP-003" }
+              - column: { name: nom, value: "Alami" }
+              - column: { name: prenom, value: "Youssef" }
+              - column: { name: email, value: "youssef.alami@atlasrh.ma" }
+              - column: { name: poste, value: "Développeur Full Stack" }
+              - column: { name: date_embauche, valueDate: "2021-06-01" }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: manager_id, valueNumeric: 2 }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 4 }
+              - column: { name: matricule, value: "EMP-004" }
+              - column: { name: nom, value: "Chraibi" }
+              - column: { name: prenom, value: "Salma" }
+              - column: { name: email, value: "salma.chraibi@atlasrh.ma" }
+              - column: { name: poste, value: "Développeuse Frontend" }
+              - column: { name: date_embauche, valueDate: "2022-09-15" }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: manager_id, valueNumeric: 2 }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 5 }
+              - column: { name: matricule, value: "EMP-005" }
+              - column: { name: nom, value: "Idrissi" }
+              - column: { name: prenom, value: "Omar" }
+              - column: { name: email, value: "omar.idrissi@atlasrh.ma" }
+              - column: { name: poste, value: "Directeur Financier" }
+              - column: { name: date_embauche, valueDate: "2019-11-01" }
+              - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: manager_id, valueComputed: "NULL" }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: employees
+            columns:
+              - column: { name: id, valueNumeric: 6 }
+              - column: { name: matricule, value: "EMP-006" }
+              - column: { name: nom, value: "Tahiri" }
+              - column: { name: prenom, value: "Nadia" }
+              - column: { name: email, value: "nadia.tahiri@atlasrh.ma" }
+              - column: { name: poste, value: "Comptable Senior" }
+              - column: { name: date_embauche, valueDate: "2023-01-10" }
+              - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: manager_id, valueNumeric: 5 }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+
+        # 4. Contrats
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: employee_id, valueNumeric: 1 }
+              - column: { name: contract_type, value: "CDI" }
+              - column: { name: date_debut, valueDate: "2020-01-15" }
+              - column: { name: date_fin, valueComputed: "NULL" }
+              - column: { name: salaire_brut, valueNumeric: 25000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: employee_id, valueNumeric: 2 }
+              - column: { name: contract_type, value: "CDI" }
+              - column: { name: date_debut, valueDate: "2020-03-01" }
+              - column: { name: date_fin, valueComputed: "NULL" }
+              - column: { name: salaire_brut, valueNumeric: 22000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: employee_id, valueNumeric: 3 }
+              - column: { name: contract_type, value: "CDI" }
+              - column: { name: date_debut, valueDate: "2021-06-01" }
+              - column: { name: date_fin, valueComputed: "NULL" }
+              - column: { name: salaire_brut, valueNumeric: 15000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 4 }
+              - column: { name: employee_id, valueNumeric: 4 }
+              - column: { name: contract_type, value: "CDD" }
+              - column: { name: date_debut, valueDate: "2024-01-01" }
+              - column: { name: date_fin, valueDate: "2026-12-31" }
+              - column: { name: salaire_brut, valueNumeric: 12000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 5 }
+              - column: { name: employee_id, valueNumeric: 5 }
+              - column: { name: contract_type, value: "CDI" }
+              - column: { name: date_debut, valueDate: "2019-11-01" }
+              - column: { name: date_fin, valueComputed: "NULL" }
+              - column: { name: salaire_brut, valueNumeric: 28000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+        - insert:
+            tableName: contracts
+            columns:
+              - column: { name: id, valueNumeric: 6 }
+              - column: { name: employee_id, valueNumeric: 6 }
+              - column: { name: contract_type, value: "STAGE" }
+              - column: { name: date_debut, valueDate: "2026-02-01" }
+              - column: { name: date_fin, valueDate: "2026-12-31" }
+              - column: { name: salaire_brut, valueNumeric: 5000.00 }
+              - column: { name: actif, valueBoolean: true }
+              - column: { name: created_at, valueDate: "2026-01-01T08:00:00" }
+
+        # 5. Demandes de congés initiales
+        - insert:
+            tableName: leave_requests
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: employee_id, valueNumeric: 3 }
+              - column: { name: leave_type_id, valueNumeric: 1 }
+              - column: { name: date_debut, valueDate: "2026-07-06" }
+              - column: { name: date_fin, valueDate: "2026-07-10" }
+              - column: { name: days_count, valueNumeric: 5 }
+              - column: { name: motif, value: "Congé d'été en famille" }
+              - column: { name: status, value: "APPROUVEE" }
+              - column: { name: manager_comment, value: "Approuvé, bon repos !" }
+              - column: { name: decision_date, valueDate: "2026-06-20T10:00:00" }
+              - column: { name: created_at, valueDate: "2026-06-15T09:00:00" }
+        - insert:
+            tableName: leave_requests
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: employee_id, valueNumeric: 3 }
+              - column: { name: leave_type_id, valueNumeric: 1 }
+              - column: { name: date_debut, valueDate: "2026-12-21" }
+              - column: { name: date_fin, valueDate: "2026-12-25" }
+              - column: { name: days_count, valueNumeric: 5 }
+              - column: { name: motif, value: "Fêtes de fin d'année" }
+              - column: { name: status, value: "EN_ATTENTE" }
+              - column: { name: created_at, valueDate: "2026-11-01T14:00:00" }
+        - insert:
+            tableName: leave_requests
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: employee_id, valueNumeric: 4 }
+              - column: { name: leave_type_id, valueNumeric: 2 }
+              - column: { name: date_debut, valueDate: "2026-05-18" }
+              - column: { name: date_fin, valueDate: "2026-05-20" }
+              - column: { name: days_count, valueNumeric: 3 }
+              - column: { name: motif, value: "Mariage familial" }
+              - column: { name: status, value: "APPROUVEE" }
+              - column: { name: manager_comment, value: "Félicitations !" }
+              - column: { name: decision_date, valueDate: "2026-05-10T11:00:00" }
+              - column: { name: created_at, valueDate: "2026-05-08T09:30:00" }
+
+        # Reset sequences after explicit IDs
+        - sql:
+            sql: "SELECT setval(pg_get_serial_sequence('departments', 'id'), coalesce(max(id), 1)) FROM departments;"
+        - sql:
+            sql: "SELECT setval(pg_get_serial_sequence('leave_types', 'id'), coalesce(max(id), 1)) FROM leave_types;"
+        - sql:
+            sql: "SELECT setval(pg_get_serial_sequence('employees', 'id'), coalesce(max(id), 1)) FROM employees;"
+        - sql:
+            sql: "SELECT setval(pg_get_serial_sequence('contracts', 'id'), coalesce(max(id), 1)) FROM contracts;"
+        - sql:
+            sql: "SELECT setval(pg_get_serial_sequence('leave_requests', 'id'), coalesce(max(id), 1)) FROM leave_requests;"

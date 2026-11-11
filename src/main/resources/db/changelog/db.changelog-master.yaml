@@ -1,7 +1,13 @@
 databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: vito
-      changes:
-        - sql:
-            sql: SELECT 1
+  - include:
+      file: db/changelog/changes/01-create-departments-table.yaml
+  - include:
+      file: db/changelog/changes/02-create-employees-table.yaml
+  - include:
+      file: db/changelog/changes/03-create-contracts-table.yaml
+  - include:
+      file: db/changelog/changes/04-create-leave-types-table.yaml
+  - include:
+      file: db/changelog/changes/05-create-leave-requests-table.yaml
+  - include:
+      file: db/changelog/changes/06-insert-initial-data.yaml
